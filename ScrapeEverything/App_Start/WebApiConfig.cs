@@ -19,6 +19,14 @@ namespace ScrapeEverything
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+            config.Routes.MapHttpRoute(
+                name: "ScrapeApi",
+                routeTemplate: "api/scrape/{url}",
+                defaults: new { url = RouteParameter.Optional }
+            );
+
         }
     }
 }

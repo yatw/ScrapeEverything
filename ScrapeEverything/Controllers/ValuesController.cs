@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace ScrapeEverything.Controllers
 {
+    
     public class ValuesController : ApiController
     {
         // GET api/values
@@ -18,7 +19,7 @@ namespace ScrapeEverything.Controllers
         // GET api/values/5
         public string Get(int id)
         {
-            return "value";
+            return "why ";
         }
 
         // POST api/values
