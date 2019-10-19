@@ -1,24 +1,19 @@
 
+
 # ScrapeEverything
 
-RESTful API that takes in a url input and return the scraped html text of the page (include the javascript rednered html that don't get parsed directly)
+RESTful API that takes in an url input and return the scraped html text of the page (include the JavaScript rendered html that don't get parsed directly)
   
 #### Ambition
 
-This API is meant to be used by other programs, especially by [NovaTracker](https://github.com/yatw/NovaTracker)
+This API is meant to be consumed by other programs, especially those rely on JavaScript dynamically generated content
 
-#### How to use
-
-Call the API directly  
-```
-https://localhost:44315/api/scrape?url=https%3A%2F%2Fwww.novaragnarok.com%2F%3Fmodule%3Dvending%26action%3Ditem%26id%3D7620
-```
 
 #### Technologies
 
-
 -  **Language**: C#
 -  **Framework**: ASP.NET
+-  **Web Scraping**: Selenium PhantomJS
 -  **Testing**: Postman
 -  **Deployment**: /
 
@@ -31,11 +26,50 @@ On Going
 
 - [x] Set up .NET enviornment
 - [x] Set up API routes
-- [ ] Find a library that parse html
-- [ ] Figure out how to scrap javascript html
-- [ ] Return string html as API response
+- [x] Scrape JavaScript html
+- [x] Provide basic login
 - [ ] Hosting 
-  
- 
 
- 
+## How to use
+
+API URL is ```https://localhost:44315/api/scrape```
+
+### Get Request: 
+Takes in url parameter (remember to encode the url )  
+Sample
+```
+https://localhost:44315/api/scrape?url=https%3A%2F%2Fwww.novaragnarok.com%2F%3Fmodule%3Dvending%26action%3Ditem%26id%3D7620
+```
+
+
+### Post Request:
+Takes in url and login information  
+Scraper will attempt to find the input fields by Id and click the login button by value  
+Sample request body
+```
+{
+	"url":"https://www.novaragnarok.com/?module=vending&action=item&id=21047",
+	"requireLogin": true,
+	"userNameFieldId": "login_username",
+	"userName": "sampleName",
+	"userPasswordFieldId": "login_password",
+	"userPassword": "samplePassword",
+	"btnValue": "Log In"
+}
+```
+### Response
+
+Sample response in JSON
+```
+{
+    "codeTable": {
+        "0": "Error: Missing information",
+        "1": "Success",
+        "2": "Error: Invalid Url",
+        "3": "Error: Cannot Find Login Fields"
+    },
+    "code": 1,
+    "message": "Success",
+    "html": "<html>...</html>"
+}
+```
