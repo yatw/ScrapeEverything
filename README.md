@@ -3,10 +3,13 @@
 # ScrapeEverything
 
 RESTful API that takes in an url input and return the scraped html text of the page (include the JavaScript rendered html that don't get parsed directly)
-  
+
+## About the project
+
 #### Ambition
 
-This API is meant to be consumed by other programs, especially those rely on JavaScript dynamically generated content
+There are many third party libraries that scrape html data of a website, but most are incapable of scraping JavaScript dynamically generated content.  
+This API is meant to solve this problem and simplify the process to "given a url return html as string"
 
 
 #### Technologies
@@ -22,7 +25,7 @@ This API is meant to be consumed by other programs, especially those rely on Jav
 On Going
 
 
-### Tasks
+#### Tasks
 
 - [x] Set up .NET enviornment
 - [x] Set up API routes
@@ -45,7 +48,7 @@ https://localhost:44315/api/scrape?url=https%3A%2F%2Fwww.novaragnarok.com%2F%3Fm
 ### Post Request:
 Takes in url and login information  
 Scraper will attempt to find the input fields by Id and click the login button by value  
-Sample request body
+Sample request body in JSON
 ```
 {
 	"url":"https://www.novaragnarok.com/?module=vending&action=item&id=21047",
@@ -72,4 +75,12 @@ Sample response in JSON
     "message": "Success",
     "html": "<html>...</html>"
 }
+```
+
+## Dependencies
+
+In Visual Studio, install the following NuGet Packets
+```
+https://www.nuget.org/packages/Selenium.WebDriver
+https://www.nuget.org/packages/phantomjs.exe/
 ```
